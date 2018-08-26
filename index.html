@@ -656,7 +656,7 @@
 
 															 <!-- zona 1  -->
 															 <rect x="890" y="5"
- 														         width="300" height="785" fill="#62B304" fill-opacity="0"
+ 														         width="300" height="785" fill="#62B304" fill-opacity="0.5"
  														         class="zona1 1G">
  														  </rect>
 															<rect x="890" y="5"
@@ -673,7 +673,7 @@
 														  </rect>
 														    <!-- zona 2  -->
 																<rect x="45" y="600"
- 																		width="840" height="190" fill="#62B304" fill-opacity="0"
+ 																		width="840" height="190" fill="#62B304" fill-opacity="0.5"
  																		class="zona2 2G">
  																</rect>
 														   <rect x="45" y="600"
@@ -690,7 +690,7 @@
 															</rect>
 														    <!-- zona 3  -->
 																<rect x="45" y="5"
-														         width="300" height="220" fill="#62B304" fill-opacity="0"
+														         width="300" height="220" fill="#62B304" fill-opacity="0.5"
 														         class="zona3 3G">
 														   </rect>
 															 <rect x="45" y="5"
@@ -1322,11 +1322,14 @@
 		<script src="js/classie.js"></script>
 		<script src="js/list.min.js"></script>
 		<script src="js/main.js"></script>
-		<!-- <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
-		<script>
-		  // Initialize Firebase
+		<script type="text/javascript">
+
+
+  // Initialize Firebase
 		  var config = {
 		    apiKey: "AIzaSyD_GzkGkqYuleTziw24JntRElqATf5V17Q",
 		    authDomain: "bibliotec-8b974.firebaseapp.com",
@@ -1336,13 +1339,74 @@
 		    messagingSenderId: "870056222750"
 		  };
 		  firebase.initializeApp(config);
-			var database = firebase.database();
-			var userId = firebase.auth().currentUser.uid;
-			return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-			  var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-			  // ...
+
+		  var cont1 = 0;
+		  var cont2 = 0;
+		  var cont3 = 0;
+		  var ref = firebase.database().ref("reservations");
+
+		  getStudents(ref, cont1, cont2, cont3);
+		  printAll(cont1, cont2, cont3);
+
+		  function getStudents(ref, cont1, cont2, cont3){
+			ref.orderByChild("zoneId").equalTo("2A").on("child_added", function(snapshot) {
+				var people = snapshot;
+				cont1+=1;
+				console.log
+				changeColor("zona1", cont1, 120);
+				console.log(snapshot.key);
 			});
+			ref.orderByChild("zoneId").equalTo("2B").on("child_added", function(snapshot) {
+				var people = snapshot;
+				cont2+=1;
+				changeColor("zona2", cont2, 100);
+				console.log(snapshot.key);
+			});
+			ref.orderByChild("zoneId").equalTo("2C").on("child_added", function(snapshot) {
+				var people = snapshot;
+				cont3+=1;
+				changeColor("zona3", cont3, 50);
+				console.log(snapshot.key);
+			});
+		}
 
-		</script> -->
+		function changeColor(zona, users, total){
+			if(users < total*0.5){
+				const zone = document.getElementsByClassName(zona);
+				console.log(zone);
+				zone[0].setAttribute("fill-opacity", "0.5"); //verde
+				zone[1].setAttribute("fill-opacity", "0"); //naranja
+				zone[2].setAttribute("fill-opacity", "0"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0"); //rojo
+			}
+			if(users >= total*0.5 && users <= total*0.8){
+				const zone = document.getElementsByClassName(zona);
+				zone[0].setAttribute("fill-opacity", "0"); //verde
+				zone[1].setAttribute("fill-opacity", "0.5"); //naranja
+				zone[2].setAttribute("fill-opacity", "0"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0"); //rojo
+			}
+			if(users > total*0.8 && users < total){
+				const zone = document.getElementsByClassName(zona);
+				zone[0].setAttribute("fill-opacity", "0"); //verde
+				zone[1].setAttribute("fill-opacity", "0"); //naranja
+				zone[2].setAttribute("fill-opacity", "0.5"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0"); //rojo
+			}
+			if(users >= total){
+				const zone = document.getElementsByClassName(zona);
+				zone[0].setAttribute("fill-opacity", "0"); //verde
+				zone[1].setAttribute("fill-opacity", "0"); //naranja
+				zone[2].setAttribute("fill-opacity", "0"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0.5"); //rojo
+			}
+		}
 
+			function printAll(cont1, cont2, cont3){
+				console.log(cont1, cont2, cont3);
+			}
+
+			
+
+		</script>
 	</body>

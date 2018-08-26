@@ -224,7 +224,7 @@
 			}
 		}
 
-		// changeColor("zona1", 60, 120);
+		//changeColor("zona1", 60, 120);
 
 	}
 
