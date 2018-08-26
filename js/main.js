@@ -192,7 +192,43 @@
 			closeSearch();
 		});
 
+<<<<<<< HEAD
 		// changeColor("zona1", 60, 120);
+=======
+		function changeColor(zona, users, total){
+			if(users < total*0.5){
+				const zone = document.getElementsByClassName(zona);
+				console.log(zone);
+				zone[0].setAttribute("fill-opacity", "0.5"); //verde
+				zone[1].setAttribute("fill-opacity", "0"); //naranja
+				zone[2].setAttribute("fill-opacity", "0"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0"); //rojo
+			}
+			if(users >= total*0.5 && users <= total*0.8){
+				const zone = document.getElementsByClassName(zona);
+				zone[0].setAttribute("fill-opacity", "0"); //verde
+				zone[1].setAttribute("fill-opacity", "0.5"); //naranja
+				zone[2].setAttribute("fill-opacity", "0"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0"); //rojo
+			}
+			if(users > total*0.8 && users < total){
+				const zone = document.getElementsByClassName(zona);
+				zone[0].setAttribute("fill-opacity", "0"); //verde
+				zone[1].setAttribute("fill-opacity", "0"); //naranja
+				zone[2].setAttribute("fill-opacity", "0.5"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0"); //rojo
+			}
+			if(users >= total){
+				const zone = document.getElementsByClassName(zona);
+				zone[0].setAttribute("fill-opacity", "0"); //verde
+				zone[1].setAttribute("fill-opacity", "0"); //naranja
+				zone[2].setAttribute("fill-opacity", "0"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0.5"); //rojo
+			}
+		}
+
+		//changeColor("zona1", 60, 120);
+>>>>>>> 152f265d35ae93e5ae0749422122147584bb5d79
 
 	}
 
