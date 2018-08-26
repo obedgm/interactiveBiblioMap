@@ -4,7 +4,7 @@
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2016, Codrops
  * http://www.codrops.com
  */
@@ -18,7 +18,7 @@
 		var styles = window.getComputedStyle(document.documentElement, ''),
 			pre = (Array.prototype.slice.call(styles).join('').match(/-(moz|webkit|ms)-/) || (styles.OLink === '' && ['', 'o']))[1],
 			dom = ('WebKit|Moz|MS|O').match(new RegExp('(' + pre + ')', 'i'))[1];
-		
+
 		return {
 			dom: dom,
 			lowercase: pre,
@@ -26,7 +26,7 @@
 			js: pre[0].toUpperCase() + pre.substr(1)
 		};
 	})();
-	
+
 	// vars & stuff
 	var support = {transitions : Modernizr.csstransitions},
 		transEndEventNames = {'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend'},
@@ -125,14 +125,14 @@
 		levelUpCtrl.addEventListener('click', function() { navigate('Down'); });
 		levelDownCtrl.addEventListener('click', function() { navigate('Up'); });
 
-		// sort by name ctrl - add/remove category name (css pseudo element) from list and sorts the spaces by name 
+		// sort by name ctrl - add/remove category name (css pseudo element) from list and sorts the spaces by name
 		sortByNameCtrl.addEventListener('click', function() {
 			if( this.checked ) {
 				classie.remove(spacesEl, 'grouped-by-category');
 				spacesList.sort('list__link');
 			}
 			else {
-				classie.add(spacesEl, 'grouped-by-category'); 
+				classie.add(spacesEl, 'grouped-by-category');
 				spacesList.sort('category');
 			}
 		});
@@ -191,6 +191,41 @@
 		closeSearchCtrl.addEventListener('click', function() {
 			closeSearch();
 		});
+
+		function changeColor(zona, users, total){
+			if(users < total*0.5){
+				const zone = document.getElementsByClassName(zona);
+				console.log(zone);
+				zone[0].setAttribute("fill-opacity", "0.5"); //verde
+				zone[1].setAttribute("fill-opacity", "0"); //naranja
+				zone[2].setAttribute("fill-opacity", "0"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0"); //rojo
+			}
+			if(users >= total*0.5 && users <= total*0.8){
+				const zone = document.getElementsByClassName(zona);
+				zone[0].setAttribute("fill-opacity", "0"); //verde
+				zone[1].setAttribute("fill-opacity", "0.5"); //naranja
+				zone[2].setAttribute("fill-opacity", "0"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0"); //rojo
+			}
+			if(users > total*0.8 && users < total){
+				const zone = document.getElementsByClassName(zona);
+				zone[0].setAttribute("fill-opacity", "0"); //verde
+				zone[1].setAttribute("fill-opacity", "0"); //naranja
+				zone[2].setAttribute("fill-opacity", "0.5"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0"); //rojo
+			}
+			if(users >= total){
+				const zone = document.getElementsByClassName(zona);
+				zone[0].setAttribute("fill-opacity", "0"); //verde
+				zone[1].setAttribute("fill-opacity", "0"); //naranja
+				zone[2].setAttribute("fill-opacity", "0"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0.5"); //rojo
+			}
+		}
+
+		// changeColor("zona1", 60, 120);
+
 	}
 
 	/**
@@ -200,7 +235,7 @@
 		if( isExpanded ) {
 			return false;
 		}
-		
+
 		// update selected level val
 		selectedLevel = level;
 
@@ -208,7 +243,7 @@
 		setNavigationState();
 
 		classie.add(mallLevelsEl, 'levels--selected-' + selectedLevel);
-		
+
 		// the level element
 		var levelEl = mallLevels[selectedLevel - 1];
 		classie.add(levelEl, 'level--current');
@@ -221,10 +256,10 @@
 
 			isExpanded = true;
 		}, 'transform');
-		
+
 		// hide surroundings element
 		hideSurroundings();
-		
+
 		// show mall nav ctrls
 		showMallNav();
 
@@ -250,7 +285,7 @@
 
 		// shows surrounding element
 		showSurroundings();
-		
+
 		// hide mall nav ctrls
 		hideMallNav();
 
@@ -267,8 +302,8 @@
 	 * Shows all spaces for current level
 	 */
 	function showLevelSpaces() {
-		spacesList.filter(function(item) { 
-			return item.values().level === selectedLevel.toString(); 
+		spacesList.filter(function(item) {
+			return item.values().level === selectedLevel.toString();
 		});
 	}
 
@@ -341,7 +376,7 @@
 			++selectedLevel;
 		}
 		else {
-			isNavigating = false;	
+			isNavigating = false;
 			return false;
 		}
 
@@ -409,7 +444,7 @@
 			spaceref = spacerefval;
 			openContentArea();
 		}
-		
+
 		// remove class active (if any) from current list item
 		var activeItem = spacesEl.querySelector('li.list__item--active');
 		if( activeItem ) {
@@ -504,7 +539,7 @@
 	 * for smaller screens: open search bar
 	 */
 	function openSearch() {
-		// shows all levels - we want to show all the spaces for smaller screens 
+		// shows all levels - we want to show all the spaces for smaller screens
 		showAllLevels();
 
 		classie.add(spacesListEl, 'spaces-list--open');
@@ -518,7 +553,7 @@
 		classie.remove(spacesListEl, 'spaces-list--open');
 		classie.remove(containerEl, 'container--overflow');
 	}
-	
+
 	init();
 
 })(window);

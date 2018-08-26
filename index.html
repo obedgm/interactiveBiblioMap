@@ -644,7 +644,7 @@
 														  <rect x="485" y="550" width="70" height="50" class="map__space"></rect>
 														    <rect x="555" y="550" width="70" height="50" class="map__space"></rect>
 														    <!-- Baños -->
-														      <rect x="626" y="550" width="240" height="75" class="map__space"</rect>
+														      <rect x="626" y="550" width="240" height="75" class="map__space"></rect>
 
 														   <!-- Cuartos de estudio izq -->
 														  <rect x="70" y="530" width="60" height="60" class="map__space"></rect>
@@ -652,6 +652,59 @@
 
 														   <!-- salon de estudio izq -->
 														   <rect x="70" y="247" width="220" height="283" class="map__space"></rect>
+
+
+															 <!-- zona 1  -->
+															 <rect x="890" y="5"
+ 														         width="300" height="785" fill="#62B304" fill-opacity="0"
+ 														         class="zona1 1G">
+ 														  </rect>
+															<rect x="890" y="5"
+																		width="300" height="785" fill="#F67408" fill-opacity="0"
+																		class="zona1 1O">
+															</rect>
+															<rect x="890" y="5"
+																	 width="300" height="785" fill="#ee5918" fill-opacity="0"
+																	 class="zona1 1OS">
+														 </rect>
+														   <rect x="890" y="5"
+														         width="300" height="785" fill="#E50000" fill-opacity="0"
+														         class="zona1 1R">
+														  </rect>
+														    <!-- zona 2  -->
+																<rect x="45" y="600"
+ 																		width="840" height="190" fill="#62B304" fill-opacity="0"
+ 																		class="zona2 2G">
+ 																</rect>
+														   <rect x="45" y="600"
+														         width="840" height="190" fill="#F67408" fill-opacity="0"
+														         class="zona2 2O">
+														   </rect>
+															 <rect x="45" y="600"
+ 																	 width="840" height="190" fill="#ee5918" fill-opacity="0"
+ 																	 class="zona2 2OS">
+ 														 </rect>
+															 <rect x="45" y="600"
+																		width="840" height="190" fill="#E50000" fill-opacity="0"
+																		class="zona2 2R">
+															</rect>
+														    <!-- zona 3  -->
+																<rect x="45" y="5"
+														         width="300" height="220" fill="#62B304" fill-opacity="0"
+														         class="zona3 3G">
+														   </rect>
+															 <rect x="45" y="5"
+																		width="300" height="220" fill="#F67408" fill-opacity="0"
+																		class="zona3 3O">
+															</rect>
+															<rect x="45" y="5"
+																	 width="300" height="220" fill="#ee5918" fill-opacity="0"
+																	 class="zona3 3OS">
+														 </rect>
+														    <rect x="45" y="5"
+														         width="300" height="220" fill="#E50000" fill-opacity="0"
+														         class="zona3 3R">
+														   </rect>
 														 </svg>
 							<div class="level__pins">
 								<a class="pin pin--4-1" data-category="1" data-space="4.01" href="#" aria-label="Pin for Cold Soup Kitchen">
@@ -1269,4 +1322,27 @@
 		<script src="js/classie.js"></script>
 		<script src="js/list.min.js"></script>
 		<script src="js/main.js"></script>
+		<!-- <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+		<script>
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyD_GzkGkqYuleTziw24JntRElqATf5V17Q",
+		    authDomain: "bibliotec-8b974.firebaseapp.com",
+		    databaseURL: "https://bibliotec-8b974.firebaseio.com",
+		    projectId: "bibliotec-8b974",
+		    storageBucket: "bibliotec-8b974.appspot.com",
+		    messagingSenderId: "870056222750"
+		  };
+		  firebase.initializeApp(config);
+			var database = firebase.database();
+			var userId = firebase.auth().currentUser.uid;
+			return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+			  var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+			  // ...
+			});
+
+		</script> -->
+
 	</body>

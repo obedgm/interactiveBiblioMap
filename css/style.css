@@ -925,7 +925,9 @@ button:focus {
 	display: none;
 }
 
-@media screen and (max-width: 65.625em), screen and (max-height: 40.625em) {
+/* @media screen and (max-width: 65.625em), screen and (max-height: 40.625em)  */
+
+@media screen and (max-width: 1440px), screen and (max-height: 743px) {
 	.main {
 		width: 100vw;
 	}
