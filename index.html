@@ -1269,4 +1269,53 @@
 		<script src="js/classie.js"></script>
 		<script src="js/list.min.js"></script>
 		<script src="js/main.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+		<script>
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyD_GzkGkqYuleTziw24JntRElqATf5V17Q",
+		    authDomain: "bibliotec-8b974.firebaseapp.com",
+		    databaseURL: "https://bibliotec-8b974.firebaseio.com",
+		    projectId: "bibliotec-8b974",
+		    storageBucket: "bibliotec-8b974.appspot.com",
+		    messagingSenderId: "870056222750"
+		  };
+		  firebase.initializeApp(config);
+		  var cont1 = 0;
+		  var cont2 = 0;
+		  var cont3 = 0;
+		  var ref = firebase.database().ref("reservations");
+
+		  getStudents(ref, cont1, cont2, cont3);
+		  printAll(cont1, cont2, cont3);
+
+		  function getStudents(ref, cont1, cont2, cont3){
+			ref.orderByChild("zoneId").equalTo("Piso2Zona3").on("child_added", function(snapshot) {
+				var people = snapshot;
+				cont1+=1;
+				console.log(cont1);
+				console.log(snapshot.key);
+			});
+			ref.orderByChild("zoneId").equalTo("Piso2Zona4").on("child_added", function(snapshot) {
+				var people = snapshot;
+				cont2+=1;
+				console.log(snapshot.key);
+			});
+			ref.orderByChild("zoneId").equalTo("Piso2Zona5").on("child_added", function(snapshot) {
+				var people = snapshot;
+				cont3+=1;
+				console.log(snapshot.key);
+			});
+		}
+
+			function printAll(cont1, cont2, cont3){
+				console.log(cont1, cont2, cont3);
+			}
+
+			
+
+		</script>
 	</body>
