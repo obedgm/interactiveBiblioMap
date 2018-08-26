@@ -1322,27 +1322,42 @@
 		<script src="js/classie.js"></script>
 		<script src="js/list.min.js"></script>
 		<script src="js/main.js"></script>
-		<!-- <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
-		<script>
-		  // Initialize Firebase
-		  var config = {
-		    apiKey: "AIzaSyD_GzkGkqYuleTziw24JntRElqATf5V17Q",
-		    authDomain: "bibliotec-8b974.firebaseapp.com",
-		    databaseURL: "https://bibliotec-8b974.firebaseio.com",
-		    projectId: "bibliotec-8b974",
-		    storageBucket: "bibliotec-8b974.appspot.com",
-		    messagingSenderId: "870056222750"
-		  };
-		  firebase.initializeApp(config);
-			var database = firebase.database();
-			var userId = firebase.auth().currentUser.uid;
-			return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-			  var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-			  // ...
-			});
+		<script type="text/javascript">
 
-		</script> -->
+		function changeColor(zona, users, total){
+			if(users < total*0.5){
+				const zone = document.getElementsByClassName(zona);
+				console.log(zone);
+				zone[0].setAttribute("fill-opacity", "0.5"); //verde
+				zone[1].setAttribute("fill-opacity", "0"); //naranja
+				zone[2].setAttribute("fill-opacity", "0"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0"); //rojo
+			}
+			if(users >= total*0.5 && users <= total*0.8){
+				const zone = document.getElementsByClassName(zona);
+				zone[0].setAttribute("fill-opacity", "0"); //verde
+				zone[1].setAttribute("fill-opacity", "0.5"); //naranja
+				zone[2].setAttribute("fill-opacity", "0"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0"); //rojo
+			}
+			if(users > total*0.8 && users < total){
+				const zone = document.getElementsByClassName(zona);
+				zone[0].setAttribute("fill-opacity", "0"); //verde
+				zone[1].setAttribute("fill-opacity", "0"); //naranja
+				zone[2].setAttribute("fill-opacity", "0.5"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0"); //rojo
+			}
+			if(users >= total){
+				const zone = document.getElementsByClassName(zona);
+				zone[0].setAttribute("fill-opacity", "0"); //verde
+				zone[1].setAttribute("fill-opacity", "0"); //naranja
+				zone[2].setAttribute("fill-opacity", "0"); //naranja fuerte
+				zone[3].setAttribute("fill-opacity", "0.5"); //rojo
+			}
+		}
+
+			changeColor("zona1", 60, 120);
+
+		</script>
 
 	</body>
